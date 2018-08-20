@@ -7,12 +7,19 @@ require_relative "board.rb"
 require_relative "random.rb"
 require_relative "sequential.rb"
 require_relative "unbeatable.rb"
+require_relative "negamax.rb"
+require_relative "player.rb"
 
-enable :sessions
+use Rack::Session::Pool
 
 get "/" do
 	session.clear
 	erb :setup
+end
+
+
+post "/negamax" do
+	negamax = PerfectComputer.new("X")
 end
 
 post "/welcome" do
