@@ -39,38 +39,54 @@ class Tictactoe_test < Minitest::Test
 	# 	assert_equal(7, function)
 	# end
 
-	# def test_block_fork
-	# 	game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1", 3)
-	# 	game.board.state = ["X",1,2,3,"O",5,6,7,"O"]
-	# 	function = game.current_player.choose_move
-	# 	p game.board.state 
-	# 	assert_equal(2, function)
-	# end
-
-	# def test_author_example
-	# 	game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1", 3)
-	# 	game.board.state = ["X","X","O",3,"O","X",6,7,"O"]
-	# 	# puts game.current_player.name
-	# 	function = game.current_player.choose_move
-	# 	assert_equal(6, function)
-	# end
-
-	# def test_combos
-	# 	size = 3
-	# 	board = Board.new(size)
-	# 	# game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1")
-	# 	# game.board.state = ["X","X","O",3,"O","X",6,7,"O"]
-	# 	# puts game.current_player.name
-	# 	combos = board.combos
-	# 	assert_equal([[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [6,4,2]], combos)
-	# end
+	def test_block_fork
+		game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1", 3)
+		game.board.state = ["X",1,2,3,"O",5,6,7,"O"]
+		function = game.current_player.choose_move
+		p game.board.state 
+		assert_equal(2, function)
+	end
 
 	def test_author_example
+		game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1", 3)
+		game.board.state = ["X","X","O",3,"O","X",6,7,"O"]
+		# puts game.current_player.name
+		function = game.current_player.choose_move
+		assert_equal(6, function)
+	end
+
+	def test_combos
+		size = 3
+		board = Board.new(size)
+		# game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1")
+		# game.board.state = ["X","X","O",3,"O","X",6,7,"O"]
+		# puts game.current_player.name
+		combos = board.combos
+		assert_equal([[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [6,4,2]], combos)
+	end
+
+	def test_win_move_4by4
 		game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1", 4)
 		game.board.state = ["X",1,2,"O",4,"X","O",7,8,9,"X",11,12,13,14,15]
 		# puts game.current_player.name
 		function = game.current_player.choose_move
 		assert_equal(15, function)
+	end
+
+	# def test_win_move_5by5
+	# 	game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1", 5)
+	# 	game.board.state = ["X",1,2,"O","O",5,"X",7,8,9,"O",11,"X",13,14,15,16,17,"X",19,"O",21,22,23,24]
+	# 	# puts game.current_player.name
+	# 	function = game.current_player.choose_move
+	# 	assert_equal(24, function)
+	# end
+
+		def test_block_move_5by5
+		game = Game.new("Aaron", "Fred", "unbeatable", "unbeatable", "X", "O", "player1", 4)
+		game.board.state = ["X","X","X","O",4,5,"O",7,8,"O","O",11,12,13,14,15]
+		# puts game.current_player.name
+		function = game.current_player.choose_move
+		assert_equal(12, function)
 	end
 
 	# def test_random_vs_unbeatable

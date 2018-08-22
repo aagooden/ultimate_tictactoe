@@ -4,6 +4,7 @@ class Game
   attr_accessor :current_player, :player1, :player2, :board
 
   def initialize(player1_name, player2_name, player1_type, player2_type, player1_piece, player2_piece, goes_first, size)
+
       @board = Board.new(size)
       @player1 = Player.new(player1_name, player1_type, player1_piece, self)
       @player2 = Player.new(player2_name, player2_type, player2_piece, self)
@@ -55,9 +56,19 @@ class Game
 
   def game_won_by(piece)
     @board.overall_status().each do |group|
-      return true if group.count(piece) == 3
+      return true if group.count(piece) == self.board.size
     end
     false
+  end
+
+  def check_who_won
+      @board.overall_status().each do |group|
+        if group.count(player1.piece) == self.size
+          return player1.name 
+        elsif group.count(player2.piece) == self.size
+          return player2.name
+        end
+      end
   end
 
 end

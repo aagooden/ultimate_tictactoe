@@ -1,12 +1,13 @@
 class Player
 
-    attr_accessor :name, :piece
+    attr_accessor :name, :piece, :type
 
     def initialize(name, type, piece, game)
 
         @piece = piece
         @name = name
         @score = 0
+        
         @game = game
 
         case type

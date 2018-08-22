@@ -11,7 +11,6 @@ class Unbeatable
     @best_score = {}
     negamax(game)
     puts "best score in choose_move is #{@best_score}"
-    p game.board.state
     move = @best_score.max_by {|key, value| value}[0]
     return move
   end
@@ -20,9 +19,9 @@ class Unbeatable
 
   def negamax(game, depth = 0, alpha = -1000, beta = 1000, color = 1)
  
-    return color * score_scenarios(game, depth) if game.game_over
+    return color * score_scenarios(game, depth) if game.game_over || depth>5
 
-    max = -10000
+    max = -1000
 
     game.board.check_available_spaces.each do |position|
       game.board.change_state(position, game.current_player.piece)
@@ -36,12 +35,14 @@ class Unbeatable
       @best_score[position] = max if depth == 0
 
       alpha = [alpha, negamax_value].max
+      puts "ALPHA is #{alpha}" if alpha >= beta
       return alpha if alpha >= beta
     end
     max
   end
 
   def score_scenarios(game, depth)
+    p self
     if game.game_won_by(self.piece)
       return 1000 / depth
     elsif game.game_won_by(self.opponent_piece)     

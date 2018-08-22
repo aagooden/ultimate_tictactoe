@@ -88,7 +88,7 @@ function getDifficulty() {
   message.innerHTML = "Select a Difficulty Level";
 
   var items = ['Random Opponent', 'Sequential Opponent', 'Unbeatable Opponent'];
-  var values = ['1', '2', '3'];
+  var values = ['random', 'sequential', 'unbeatable'];
   // creates a select element
   var sel = document.createElement('select');
   sel.setAttribute('name', 'difficulty');
