@@ -190,22 +190,7 @@ li a:hover:not(.active) {
   border-radius: 5%;
 }
 
-.grid-container > div {
+.grids div {
   background-color: black;
-  border-top: solid 10px black;
-  border-right: solid 10px black;
-  border-bottom: solid 10px black;
-  border-left: solid 10px black;
-  /* text-align: center; */
-  /* padding: 5px 0; */
-  font-size: 5px;
-  /* border-right: solid 2px white;
-  border-top: solid 2px black;
-  border-bottom: solid 2px black;
-  border-left: solid 2px black; */
-  width: 150pv;
-  height: 150pv;
-  /* align-items: auto; */
-  justify-content: space-evenly;
-  /* border-radius: 25px;
+
 }

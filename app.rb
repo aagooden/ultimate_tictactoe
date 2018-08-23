@@ -53,7 +53,7 @@ post "/start_game" do
 	if session[:player1_name] == "Computer1"
 		erb :difficulty
 	else
-		session[:game] = Game.new(session[:player1_name], session[:player2_name], "human", player2_type, player1_piece, player2_piece, session[:first_move], 3)
+		session[:game] = Game.new(session[:player1_name], session[:player2_name], "human", player2_type, player1_piece, player2_piece, session[:first_move], 4)
 		puts "GAME" *(100)
 		session[:just_played] = false
 		redirect "/play_game"
@@ -69,6 +69,7 @@ get "/play_game" do
 	if session[:just_played] == "human"
 		puts "HUMAN" *(500)
 		session[:game].board.change_state(params[:current_move].to_i, session[:game].current_player.piece)
+		redirect "/game_over" if session[:game].game_over
 		session[:game].change_turn
 		puts "CURRENT PLAYER IS NOW #{session[:game].current_player.name}"
 	end 
@@ -82,8 +83,9 @@ get "/play_game" do
 		p session[:game].current_player.type
 
 		session[:current_move] = session[:game].current_player.choose_move
-		session[:game].change_turn
 		session[:game].board.change_state(session[:current_move].to_i, session[:game].current_player.piece)
+		redirect "/game_over" if session[:game].game_over
+		session[:game].change_turn
 		session[:just_played] = "computer"
 		redirect "/play_game"
 	end
@@ -171,25 +173,17 @@ end
 # 		redirect "/move?player1_name=" + player1_name + "&player2_name=" + player2_name + "&difficulty=" + difficulty + "&game_status=" + game_status
 # 	end
 
-# end
+# en
 
 
-get "/no_dice" do
-	redirect "/board"
-end
-
-
-get "/winner" do
-	player1_name = params[:player1_name]
-	player2_name = params[:player2_name]
-	difficulty = params[:difficulty]
-	game_status = params[:game_status]
-	if game_status == "winner"
+get "/game_over" do
+	if session[:game].board.check_winner
 		session[:message1] = "Way to go #{session[:game].current_player.name}, YOU WIN!!"
+		session[:game].current_player.increase_score
 	else
 		session[:message1] = "Better luck next time...IT'S A TIE!"
 	end
-	erb :winner, locals: {player1_name: player1_name, player2_name: player2_name, difficulty: difficulty, game_status: game_status }
+	erb :winner
 end
 
 

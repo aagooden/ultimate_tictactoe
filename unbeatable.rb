@@ -10,6 +10,10 @@ class Unbeatable
   def choose_move(game)
     @best_score = {}
     negamax(game)
+    # same_values = []
+    # max_int = @best_score.max_by {|key, value| value}[0]
+    # @best_score.each {|key, value| same_values.push(key) if value == max_int}
+    # move = same_values.sample
     puts "best score in choose_move is #{@best_score}"
     move = @best_score.max_by {|key, value| value}[0]
     return move
