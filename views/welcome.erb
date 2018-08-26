@@ -1,25 +1,26 @@
 
+<div class = "modal-content">
+	<h1>Welcome to Gooden's TicTacToe!</h1>
+	<h2>May the fork be with you!</h2>
 
-<h1>Welcome to Gooden's TicTacToe!</h1>
-<h2>May the fork be with you!</h2>
 
+	<form action="info" id="info" method="post">
+	  <h2>How many players?</h2>
+	  <input type="radio" id="radio1" name="number_of_players" value="1" onclick="reset_page('one');onePlayer();getDifficulty()" required> One<br>
 
-<form action="info" id="info" method="post">
-  <h2>How many players?</h2>
-  <input type="radio" id="radio1" name="number_of_players" value="1" onclick="reset_page('one');onePlayer();getDifficulty()" required> One<br>
+	  <input type="radio" name="number_of_players" value="2" onclick="reset_page('two');twoPlayer()" required> Two<br><br>
 
-  <input type="radio" name="number_of_players" value="2" onclick="reset_page('two');twoPlayer()" required> Two<br><br>
+	    <div id="two_player_div"></div>
 
-    <div id="two_player_div"></div>
+	    <div id="one_player_div"></div>
 
-    <div id="one_player_div"></div>
+	    <div id="difficulty_message"></div>
 
-    <div id="difficulty_message"></div>
+	    <div id="difficulty_levels"></div><br>
 
-    <div id="difficulty_levels"></div><br>
+	    <input type="submit" name="" value ="Let's Play">
 
-    <input type="submit" name="" value ="Let's Play">
-
-</form>
+	</form>
+</div>
 
 <script type="text/javascript" src="tictactoe.js"></script>

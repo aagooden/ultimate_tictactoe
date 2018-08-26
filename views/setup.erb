@@ -1,7 +1,22 @@
-<h1>Pick the kind of game you would like to play...</h1>
+<div class="modal-content">
+	<h1>Pick the kind of game you would like to play...</h1>
+	<form class="" action="welcome" method="post">
 
-<form class="" action="welcome" method="post">
-  <input type="radio" name="game_type" value="computer" required>Computer VS Computer<br><br>
-  <input type="radio" name="game_type" value="human" required>Human VS Human or Computer<br><br>
-  <input type="submit" name="" value="Select">
-</form>
+	  <input type="radio" id="radio1" name="game_type"  value="computer" required>Computer VS Computer<br><br>
+<!-- 	  <label for="radio1">Computer VS Computer</label> -->
+
+	  <input type="radio" id="radio2" name="game_type" value="human" required>(Human VS Human) OR (Human VS Computer)<br><br>
+<!-- 	  <label for="radio2">(Human VS Human) OR (Human VS Computer)</label> -->
+	<p></p>
+	  <div class="select" style = "margin: 0 auto">
+	  <select required id="size" name="size" style = "margin: 0 auto">
+	    <option value="">Select Board Size:</option>
+	    <option value="3">3 X 3</option>
+	    <option value="4">4 X 4</option>
+	    <option value="5">5 X 5</option>
+	  </select>
+	</div>
+	<p></p>
+	  <input type="submit" name="" value="Select">
+	</form>
+</div>

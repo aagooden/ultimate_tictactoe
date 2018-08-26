@@ -1,27 +1,21 @@
 
 body {
-  background-image: url("/white_tictactoe.jpg");
-  background-repeat:no-repeat;
-  background-position:stretch;
-  background-attachment: fixed;
-  background-color: black;
+  background-color: white;
   font-family: "Helvetica", Arial, sans-serif;
-  padding: 0.5%;
   text-align: center;
-  font-size: 20px;
-  background-size: 100%;
+  font-size: 2rem;
+  margin: 0;
 }
 
 h3 {
   text-align: center;
   margin-top: 2%;
   margin-bottom: 2%;
-  /* font-family: 'Jacques Francois'; */
   font-family: serif;
   font-size: 1vw;
   font-weight: bold;
   color: black;
-      text-shadow:
+  text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
@@ -33,15 +27,9 @@ h2 {
   margin-top: 1%;
   margin-bottom: 1%;
   font-family: serif;
-  /* font-family: 'Jacques Francois'; */
   font-size: 2vw;
   font-weight: bold;
   color: black;
-      /* text-shadow:
-    -0.5px -0.5px 0 #fff,
-    0.5px -0.5px 0 #fff,
-    -0.5px 0.5px 0 #fff,
-    0.5px 0.5px 0 #fff; */
 }
 
 
@@ -50,7 +38,6 @@ h1 {
   margin-top: 7%;
   margin-bottom: none;
   font-family: serif;
-  /* font-family: 'Jacques Francois'; */
   font-size: 5svw;
   font-weight: bold;
   color: black;
@@ -95,102 +82,80 @@ textarea {
   font-size: 2vw;
 }
 
+input[type="radio"] {
+  transform: scale(2);
+  font-size: 2vw;
+}
+
+select {
+  padding: 1rem;
+  text-indent: 10px;
+  border: solid 2px #ddd;
+  border-radius: 10px;
+  font-size: 2rem;
+
+}
+
 
 #difficulty_dropdown {
-padding: 10px 0;
-text-indent: 10px;
-border: solid 2px #ddd;
-border-radius: 10px;
-font-size: 2vw;
+  padding: 10px 0;
+  text-indent: 10px;
+  border: solid 2px #ddd;
+  border-radius: 10px;
+  font-size: 2vw;
 }
-
-
-
-
-
 
 img.top {
-  /* border-radius: 2px;
-  border-right: solid 2px black;
-  border-top: solid 2px black;
-  border-bottom: solid 2px black;
-  border-left: solid 2px black; */
-  width:30%;height:5%;
-}
-
-/* img {
-  border-radius: 2px;
-  border-right: solid 2px black;
-  border-top: solid 2px black;
-  border-bottom: solid 2px black;
-  border-left: solid 2px black;
-  width:75px;height:75px;
-} */
-
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover:not(.active) {
-    background-color: green;
+  width:20%;height:2%;
+  margin: 2rem auto;
 }
 
 .active {
-    background-color: #4CAF50;
+  background-color: #4CAF50;
 }
 
-
 .grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto;
-  /* grid-gap: 0px; */
-  /* background-color: white; */
-  /* padding: 5px; */
-
-  /* border-radius: 25px; */
-  /* margin-left: 5%; */
-  /* margin-right: 5%; */
-  /* width: 90%;
-  height: 90%; */
-    justify-content: center;
-    border-radius: 50%;
+  background-color: white; 
+  margin: 0 auto;
+  width: 40rem;
+  height: 40rem;
 }
 
 .flex-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 70vh;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
-  /* padding: 1%; */
-  padding-bottom: 1%;
-  border-color: black;
-  border-style: inset;
-  border-width: 5px;
-  width: 70%;
-  margin: 0 auto;
-  border-radius: 5%;
-}
-
-.grids div {
+  display: block;
   background-color: black;
-
+  border-radius: 10px;
+  width: 40rem;
+  height: 40rem;
+  padding: 10%;
+  margin: 0 auto;
 }
+
+.grids {
+  background-color: black;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: rgba(0,0,0,0.4);
+    margin: 2% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; 
+    height: 90%;
+}
+
+
+

@@ -9,6 +9,7 @@ class Game
       @player1 = Player.new(player1_name, player1_type, player1_piece, self)
       @player2 = Player.new(player2_name, player2_type, player2_piece, self)
       goes_first == "player1" ? @current_player = @player1 : @current_player = @player2 
+      @size = size
   end
 
   def change_turn
@@ -44,14 +45,8 @@ class Game
 
 
   def play_again(turn)
-    @board = Board.new
-    @board.reset
-    @turn = turn
-    if turn == "player1" || turn == "Computer1"
-      @current_player = @player1
-    else
-      @current_player = @player2
-    end
+    @board = Board.new(@size)
+    @current_player = turn == "player1" ? @player1 : @player2
   end
 
   def game_won_by(piece)

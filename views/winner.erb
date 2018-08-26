@@ -1,7 +1,11 @@
+
+
+
+
 <%images = []%>
 <%session[:game].board.state.each do |position|%>
   <%if position.is_a?Integer%>
-    <%images.push("blank.jpg")%>
+    <%images.push("")%>
   <%elsif position == "X"%>
     <%images.push("x.png")%>
   <%elsif position == "O"%>
@@ -9,62 +13,37 @@
   <%end%>
 <%end%>
 
-<br><br><br>
-<div class="grid-container">
-  <div class="item1" id="grid_1" onclick="playerMove(0)"
-    style="border-bottom: 5px solid white; border-right: 5px solid white;" >
-    <img src="<%= images[0] %>" style="width:100px;height:100px;">
-  </div>
 
-  <div class="item2" onclick="playerMove(1)"
-    style="border-bottom: 5px solid white;">
-    <img src="<%= images[1] %>" style="width:100px;height:100px;">
-  </div>
 
-  <div class="item3" onclick="playerMove(2)"
-    style="border-bottom: 5px solid white;border-left: 5px solid white;">
-    <img src="<%= images[2] %>" style="width:100px;height:100px;">
-  </div>
+<% quips = ["Think OUTSIDE the box!", "You are a Tic Tac Toe MASTER!!!", "May the FORK be with you!", "Be the board!", "Take no prisoners!!!", "You are ROCKING it!!", "Hello...Play in a blank space!", "It's YOUR turn Dude!", "Something to prove?  Make a move!!!"]%>
 
-  <div class="item4" onclick="playerMove(3)"
-    style="border-bottom: 5px solid white; border-right: 5px solid white;">
-    <img src="<%= images[3] %>" style="width:100px;height:100px;">
-  </div>
 
-  <div class="item5" onclick="playerMove(4)"
-    style="border-bottom: 5px solid white;">
-    <img src="<%= images[4] %>" style="width:100px;height:100px;">
-  </div>
+<!-- <h2><%=session[:game].current_player.name%>: It's your turn.</h2>
+<h2><%=quips.sample%></h2> -->
 
-  <div class="item6" onclick="playerMove(5)"
-    style="border-bottom: 5px solid white;border-left: 5px solid white;">
-    <img src="<%= images[5] %>" style="width:100px;height:100px;">
+<div class="flex-container">
+  <div class="grid-container" style="display: grid;grid-gap: 1rem;grid-template-columns: repeat(<%=session[:game].board.size%>, 1fr);grid-template-rows: repeat(<%=session[:game].board.size%>,1fr);">
+    <% for space_count in (0...images.length) %>
+      <div class="grids" id="<%=space_count%>" onclick="playerMove(<%= space_count %>)">
+        <% if images[space_count] == "" %>
+        <% else %>
+        <img src="<%= images[space_count] %>" style="width:80%;height:80%;padding-top: .5rem;">
+        <% end %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="item7" onclick="playerMove(6)"
-  style="border-right: 5px solid white;">
-    <img src="<%= images[6] %>" style="width:100px;height:100px;">
-  </div>
-
-  <div class="item8" onclick="playerMove(7)">
-    <img src="<%= images[7] %>" style="width:100px;height:100px;">
-  </div>
-
-  <div class="item9" onclick="playerMove(8)"
-    style="border-left: 5px solid white;">
-    <img src="<%= images[8] %>" style="width:100px;height:100px;">
-  </div>
-
 </div>
 
+<button id="myBtn">Open Modal</button>
+<div id="winModal" class="modal">
+  <div class="modal-content">
+    <h1><%= session[:message1] %></h1>
 
-<h1><%= session[:message1] %></h1>
+<h1>The score is:</h1><br>
 
-<h2>The score is:</h2><br>
+<h1><%=session[:game].player1.name%>: <%=session[:game].player1.score%></h1>
 
-<h2><%=session[:game].player1.name%>: <%=session[:game].player1.score%></h2>
-
-<h2><%=session[:game].player2.name%>: <%=session[:game].player2.score%></h2><br>
+<h1><%=session[:game].player2.name%>: <%=session[:game].player2.score%></h1><br>
 
 <form class="" action="again" method="get">
   <input type="submit" name="" value="Play Again">
@@ -73,3 +52,22 @@
 <form class="" action="/" method="get">
   <input type="submit" name="" value="Start Over">
 </form>
+  </div>
+
+</div>
+
+<script>
+var modal = document.getElementById('winModal');
+
+function openModal() {
+    modal.style.display = "block";
+}
+</script>
+
+<body onload="openModal()">
+
+
+
+
+
+
