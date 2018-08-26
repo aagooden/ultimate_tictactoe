@@ -84,7 +84,8 @@ textarea {
 
 input[type="radio"] {
   transform: scale(2);
-  font-size: 5rem;
+  font-size: 7rem;
+  padding: 1rem;
 }
 
 select {
