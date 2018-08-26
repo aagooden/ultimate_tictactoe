@@ -83,8 +83,8 @@ textarea {
 }
 
 input[type="radio"] {
-  transform: scale(2);
-  font-size: 2vw;
+  transform: scale(3);
+  font-size: 5rem;
 }
 
 select {
@@ -92,7 +92,7 @@ select {
   text-indent: 10px;
   border: solid 2px #ddd;
   border-radius: 10px;
-  font-size: 4rem;
+  font-size: 2rem;
 
 }
 
