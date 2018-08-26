@@ -71,6 +71,7 @@ post "/computerVScomputer_play" do
 	redirect "/play_game"
 end
 
+
 get "/play_game" do
 	session[:just_played] = params.dig(:just_played)
 	if session[:game].board.check_position(params[:current_move].to_i) == false
@@ -85,9 +86,6 @@ get "/play_game" do
 	if session[:game].current_player.type.class == Human 
 		erb :board 
 	else
-		puts "COMPUTER MOVE" *(100)
-		p session[:difficulty]
-		p session[:game].current_player.type
 
 		session[:current_move] = session[:game].current_player.choose_move
 		session[:game].board.change_state(session[:current_move].to_i, session[:game].current_player.piece)

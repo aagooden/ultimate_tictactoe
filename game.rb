@@ -16,25 +16,6 @@ class Game
     @current_player == @player1 ? @current_player = @player2 : @current_player = @player1
   end
 
-  def update_game_status(move)
-    if @board.check_position(move) == false
-      return "no_dice"
-    else
-      @board.change_state(@current_player.piece, move)
-    end
-
-    if @board.check_winner
-      @current_player.increase_score
-      return "winner"
-    elsif @board.check_tie
-      return "tie"
-    else
-      @current_player = @current_player ==  @player1 ? @player2 : @player1
-      @turn = @turn == "player1" ? "player2" : "player1"
-      # puts "TURN AT THE END IS #{@turn}"
-    end
-  end
-
   def game_over
     if @board.check_tie || @board.check_winner
       return true
@@ -42,7 +23,6 @@ class Game
       return false
     end
   end
-
 
   def play_again(turn)
     @board = Board.new(@size)
@@ -54,16 +34,6 @@ class Game
       return true if group.count(piece) == self.board.size
     end
     false
-  end
-
-  def check_who_won
-      @board.overall_status().each do |group|
-        if group.count(player1.piece) == self.size
-          return player1.name 
-        elsif group.count(player2.piece) == self.size
-          return player2.name
-        end
-      end
   end
 
 end
