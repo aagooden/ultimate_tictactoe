@@ -13,8 +13,8 @@ class Player
         case type
         when "random"
             @type = Random.new
-        when "sequencial"
-            @type = Sequencial.new
+        when "sequential"
+            @type = Sequential.new
         when "human"
             @type = Human.new
         when "unbeatable"
