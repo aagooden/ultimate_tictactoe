@@ -29,9 +29,9 @@
 <div id="winModal" class="modal">
   <div class="modal-content">
     <h1><%= session[:message1] %></h1>
-    <h1>The score is:</h1><br>
+    <h1>The score is:</h1>
     <h1><%=session[:game].player1.name%>: <%=session[:game].player1.score%></h1>
-    <h1><%=session[:game].player2.name%>: <%=session[:game].player2.score%></h1><br>
+    <h1><%=session[:game].player2.name%>: <%=session[:game].player2.score%></h1>
 
     <form class="" action="again" method="get">
       <input type="submit" name="" value="Play Again">
