@@ -8,7 +8,8 @@
     <%images.push("o.png")%>
   <%end%>
 <%end%>
-
+<div class="page">
+    <img  src="/header_pic.gif" class="top">
 <div style="display: none;" id="submitBtn" data="<%= session[:compVScomp] %>">
   <form action="play_game" method="get">
    <input type="submit" value="Next Move">
@@ -20,11 +21,12 @@
       <div class="grids" id="<%=space_count%>" onclick="playerMove(<%= space_count %>)">
         <% if images[space_count] == "" %>
         <% else %>
-        <img src="<%= images[space_count] %>" style="width:70%;height:70%;padding-top: .5rem;">
+        <img src="<%= images[space_count] %>" style="width:70%;height:70%;padding-top: 2vw;">
         <% end %>
       </div>
     <% end %>
   </div>
+</div>
 </div>
 
 
