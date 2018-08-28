@@ -92,7 +92,7 @@ select {
   padding: 1vw;
   border: solid 2px #ddd;
   border-radius: 10px;
-  font-size: 1vw;
+  font-size: 2vw;
 
 }
 
@@ -105,8 +105,9 @@ select {
 }
 
 img.top {
-  width:20%;height:2%;
-  margin: 2rem auto;
+  height:auto;
+  width: 20vw;
+  margin: 2rem auto 0 auto;
 }
 
 .active {
@@ -116,8 +117,8 @@ img.top {
 .grid-container {
   background-color: white; 
   margin: 0 auto;
-  width: 25vw;
-  height: 25vw;
+  width: 31vw;
+  height: 31vw;
 }
 
 .flex-container {
@@ -131,7 +132,11 @@ img.top {
 }
 
 .grids {
+  display: block;
+  overflow: scroll;
   background-color: black;
+  width: 10vw;
+  height: 10vw;
 }
 
 .menus {
