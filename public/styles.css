@@ -117,8 +117,8 @@ img.top {
 .grid-container {
   background-color: white; 
   margin: 0 auto;
-  width: 40rem;
-  height: 40rem;
+  width: 25vw;
+  height: 25vw;
 }
 
 .flex-container {
