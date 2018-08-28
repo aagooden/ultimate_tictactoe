@@ -8,13 +8,14 @@
     <%images.push("o.png")%>
   <%end%>
 <%end%>
+
+
+<div class="flex-container">
 <div style="display: none;" id="submitBtn" data="<%= session[:compVScomp] %>">
   <form action="play_game" method="get">
    <input type="submit" value="Next Move">
   </form>
 </div>
-
-<div class="flex-container">
   <div class="grid-container" style="display: grid;grid-gap: 1rem;grid-template-columns: repeat(<%=session[:game].board.size%>, 1fr);grid-template-rows: repeat(<%=session[:game].board.size%>,1fr);">
     <% for space_count in (0...images.length) %>
       <div class="grids" id="<%=space_count%>" onclick="playerMove(<%= space_count %>)">

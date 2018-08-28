@@ -61,8 +61,8 @@ input[type="submit"] {
   transition: background-color 200ms ease-in-out;
   letter-spacing: 0.05em;
   border: none;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 a:hover,
 a:focus,
@@ -127,7 +127,7 @@ img.top {
   border-radius: 10px;
   width: 40rem;
   height: 40rem;
-  padding: 10%;
+  padding: 2% 5% 8% 5%;
   margin: 0 auto;
 }
 
