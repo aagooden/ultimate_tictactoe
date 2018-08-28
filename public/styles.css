@@ -89,11 +89,10 @@ input[type="radio"] {
 }
 
 select {
-  padding: 1rem;
-  text-indent: 10px;
+  padding: 1vw;
   border: solid 2px #ddd;
   border-radius: 10px;
-  font-size: 2rem;
+  font-size: 1vw;
 
 }
 
