@@ -1,23 +1,24 @@
 
 
+<div class="menus">
+  <form class="modal-content" action="computerVScomputer_play" method="post">
+  <br><br>
+    <h2>Select difficulty level for Computer 1</h2>
+    <select name="difficulty_selection1" required>
+      <option value="random">Random</option>
+      <option value="sequential">Sequential</option>
+      <option value="unbeatable">Unbeatable</option>
+    </select><br><br>
 
-<form class="modal-content" action="computerVScomputer_play" method="post">
-<br><br>
-  <h2>Select difficulty level for Computer 1</h2>
-  <select name="difficulty_selection1" required>
-    <option value="random">Random</option>
-    <option value="sequential">Sequential</option>
-    <option value="unbeatable">Unbeatable</option>
-  </select><br><br>
+    <h2>Select difficulty level for Computer 2</h2>
+    <select name="difficulty_selection2" required>
+      <option value="random">Random</option>
+      <option value="sequential">Sequential</option>
+      <option value="unbeatable">Unbeatable</option>
+    </select><br><br>
 
-  <h2>Select difficulty level for Computer 2</h2>
-  <select name="difficulty_selection2" required>
-    <option value="random">Random</option>
-    <option value="sequential">Sequential</option>
-    <option value="unbeatable">Unbeatable</option>
-  </select><br><br>
+    <% session[:first_move] = "player1" %>
 
-  <% session[:first_move] = "player1" %>
-
-  <input type="submit" value="Submit">
-</form>
+    <input type="submit" value="Submit">
+  </form>
+</div>
