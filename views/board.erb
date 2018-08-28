@@ -1,7 +1,7 @@
 <%images = []%>
 <%session[:game].board.state.each do |position|%>
   <%if position.is_a?Integer%>
-    <%images.push("")%>
+    <%images.push("black.png")%>
   <%elsif position == "X"%>
     <%images.push("x.png")%>
   <%elsif position == "O"%>
