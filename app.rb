@@ -75,25 +75,34 @@ end
 
 get "/play_game" do
 	session[:just_played] = params.dig(:just_played)
-	if session[:game].board.check_position(params[:current_move].to_i) == false
+	puts "test" *(100)
+	puts session[:compVScomp]
+	puts session[:just_played]
+	if session[:compVScomp] == true && session[:just_played] == "human"
 		erb :board
-	elsif session[:just_played] == "human"
-		session[:game].board.change_state(params[:current_move].to_i, session[:game].current_player.piece)
-		redirect "/game_over" if session[:game].game_over
-		session[:game].change_turn
-	end 
-
-
-	if session[:game].current_player.type.class == Human 
-		erb :board 
 	else
-		session[:current_move] = session[:game].current_player.choose_move
-		session[:game].board.change_state(session[:current_move].to_i, session[:game].current_player.piece)
-		redirect "/game_over" if session[:game].game_over
-		session[:game].change_turn
-		session[:just_played] = "computer"
-		# redirect "/play_game"
-		erb :board
+
+		if session[:game].board.check_position(params[:current_move].to_i) == false
+			erb :board
+
+		elsif session[:just_played] == "human"
+			session[:game].board.change_state(params[:current_move].to_i, session[:game].current_player.piece)
+			redirect "/game_over" if session[:game].game_over
+			session[:game].change_turn
+		end 
+
+
+		if session[:game].current_player.type.class == Human 
+			erb :board 
+		else
+			session[:current_move] = session[:game].current_player.choose_move
+			session[:game].board.change_state(session[:current_move].to_i, session[:game].current_player.piece)
+			redirect "/game_over" if session[:game].game_over
+			session[:game].change_turn
+			session[:just_played] = "computer"
+			# redirect "/play_game"
+			erb :board
+		end
 	end
 end
 
