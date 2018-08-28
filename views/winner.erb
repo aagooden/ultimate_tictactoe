@@ -13,14 +13,6 @@
   <%end%>
 <%end%>
 
-
-
-<% quips = ["Think OUTSIDE the box!", "You are a Tic Tac Toe MASTER!!!", "May the FORK be with you!", "Be the board!", "Take no prisoners!!!", "You are ROCKING it!!", "Hello...Play in a blank space!", "It's YOUR turn Dude!", "Something to prove?  Make a move!!!"]%>
-
-
-<!-- <h2><%=session[:game].current_player.name%>: It's your turn.</h2>
-<h2><%=quips.sample%></h2> -->
-
 <div class="flex-container">
   <div class="grid-container" style="display: grid;grid-gap: 1rem;grid-template-columns: repeat(<%=session[:game].board.size%>, 1fr);grid-template-rows: repeat(<%=session[:game].board.size%>,1fr);">
     <% for space_count in (0...images.length) %>
@@ -34,24 +26,20 @@
   </div>
 </div>
 
-<button id="myBtn">Open Modal</button>
 <div id="winModal" class="modal">
   <div class="modal-content">
     <h1><%= session[:message1] %></h1>
+    <h1>The score is:</h1><br>
+    <h1><%=session[:game].player1.name%>: <%=session[:game].player1.score%></h1>
+    <h1><%=session[:game].player2.name%>: <%=session[:game].player2.score%></h1><br>
 
-<h1>The score is:</h1><br>
+    <form class="" action="again" method="get">
+      <input type="submit" name="" value="Play Again">
+    </form>
 
-<h1><%=session[:game].player1.name%>: <%=session[:game].player1.score%></h1>
-
-<h1><%=session[:game].player2.name%>: <%=session[:game].player2.score%></h1><br>
-
-<form class="" action="again" method="get">
-  <input type="submit" name="" value="Play Again">
-</form>
-
-<form class="" action="/" method="get">
-  <input type="submit" name="" value="Start Over">
-</form>
+    <form class="" action="/" method="get">
+      <input type="submit" name="" value="Start Over">
+    </form>
   </div>
 
 </div>
