@@ -68,6 +68,7 @@ end
 post "/computerVScomputer_play" do
 	session[:game] = Game.new("Computer 1", "Computer 2", params[:difficulty_selection1].downcase, params[:difficulty_selection2].downcase, "X", "O", session[:first_move], session[:size])
 	session[:just_played] = true
+	session[:compVScomp] = true
 	redirect "/play_game"
 end
 
@@ -86,13 +87,13 @@ get "/play_game" do
 	if session[:game].current_player.type.class == Human 
 		erb :board 
 	else
-
 		session[:current_move] = session[:game].current_player.choose_move
 		session[:game].board.change_state(session[:current_move].to_i, session[:game].current_player.piece)
 		redirect "/game_over" if session[:game].game_over
 		session[:game].change_turn
 		session[:just_played] = "computer"
-		redirect "/play_game"
+		# redirect "/play_game"
+		erb :board
 	end
 end
 

@@ -8,10 +8,11 @@
     <%images.push("o.png")%>
   <%end%>
 <%end%>
-
-
-
-<% quips = ["Think OUTSIDE the box!", "You are a Tic Tac Toe MASTER!!!", "May the FORK be with you!", "Be the board!", "Take no prisoners!!!", "You are ROCKING it!!", "Hello...Play in a blank space!", "It's YOUR turn Dude!", "Something to prove?  Make a move!!!"]%>
+<div style="display: none;" id="submitBtn" data="<%= session[:compVScomp] %>">
+  <form action="play_game" method="get">
+   <input type="submit" value="Next Move">
+  </form>
+</div>
 
 <div class="flex-container">
   <div class="grid-container" style="display: grid;grid-gap: 1rem;grid-template-columns: repeat(<%=session[:game].board.size%>, 1fr);grid-template-rows: repeat(<%=session[:game].board.size%>,1fr);">
@@ -26,6 +27,14 @@
   </div>
 </div>
 
+
+<script type="text/javascript">
+  if(submitBtn.getAttribute('data') == "true") {
+    console.log("jdfasdfadfoiafioaf");
+    submitBtn.style.display = "block"; 
+    console.log(submitBtn.style.display);
+  };
+</script>
 
 
 <script>
