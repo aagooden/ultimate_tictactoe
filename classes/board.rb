@@ -81,5 +81,20 @@ class Board
       return winner
     end
 
+  def game_over
+    if self.check_tie || self.check_winner
+      return true
+    else
+      return false
+    end
+  end
+
+  def game_won_by(piece)
+    @board.overall_status().each do |group|
+      return true if group.count(piece) == self.size
+    end
+    false
+  end
+
 
 end

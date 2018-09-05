@@ -1,15 +1,29 @@
 require "sinatra"
 require "erb"
-require_relative "game.rb"
-require_relative "human.rb"
-require_relative "computer.rb"
-require_relative "board.rb"
-require_relative "random.rb"
-require_relative "sequential.rb"
-require_relative "unbeatable.rb"
-require_relative "player.rb"
+require_relative "classes/game.rb"
+require_relative "classes/human.rb"
+require_relative "classes/computer.rb"
+require_relative "classes/board.rb"
+require_relative "classes/random.rb"
+require_relative "classes/sequential.rb"
+require_relative "classes/unbeatable.rb"
+require_relative "classes/player.rb"
 
 use Rack::Session::Pool
+
+def set_player_type(type, piece)
+	case type
+        when "random"
+            type = Random.new
+        when "sequential"
+            type = Sequential.new
+        when "human"
+            type = Human.new
+        when "unbeatable"
+            type = Unbeatable.new(piece)
+        end
+    return type
+end
 
 get "/" do
 	session.clear
@@ -44,21 +58,30 @@ end
 
 
 post "/start_game" do
-	session[:first_move] = params[:first_move]
-	if session[:player2_name] == "Computer"
-		player2_type = session[:difficulty].downcase
-	else
-		player2_type = "human"
-	end
 
 	player1_piece = "X"
-	player2_piece = "O"
+	player2_piece = "O"	
+
+	session[:first_move] = params[:first_move]
+	if session[:player2_name] == "Computer"
+		player2_type = set_player_type(session[:difficulty].downcase, player2_piece)
+	else
+		player2_type = set_player_type("human", player2_piece)
+	end
 
 	if session[:player1_name] == "Computer1"
 		erb :difficulty
 	else
-		session[:game] = Game.new(session[:player1_name], session[:player2_name], "human", player2_type, player1_piece, player2_piece, session[:first_move], session[:size])
+		player1_type = Human.new()
+		
+		# session[:game] = Game.new(session[:player1_name], session[:player2_name], "human", player2_type, player1_piece, player2_piece, session[:first_move], session[:size])
 		session[:just_played] = false
+		session[:player1] = Player.new(session[:player1_name], player1_type, player1_piece)
+		session[:player2] = Player.new(session[:player2_name], player2_type, player2_piece)
+		puts "PLAYER 2 IS ...  " *(50)
+		p session[:player2]
+		session[:game] = Game.new(session[:first_move], session[:player1], session[:player2])
+		session[:board] = Board.new(session[:size])
 		redirect "/play_game"
 		# initialize(player1_name, player2_name, player1_type, player2_type, player1_piece, player2_piece, goes_first, size)
 		# redirect "/move?player1_name=" + player1_name + "&player2_name=" + player2_name + "&difficulty=" + difficulty + "&first_move=" + first_move
@@ -72,39 +95,57 @@ post "/computerVScomputer_play" do
 	redirect "/play_game"
 end
 
-
 get "/play_game" do
-	session[:just_played] = params.dig(:just_played)
-	puts "test" *(100)
-	puts session[:compVScomp]
-	puts session[:just_played]
-	if session[:compVScomp] == true && session[:just_played] == "human"
-		erb :board
-	else
+	# session[:just_played] = params.dig(:just_played)
 
-		if session[:game].board.check_position(params[:current_move].to_i) == false
-			erb :board
-
-		elsif session[:just_played] == "human"
-			session[:game].board.change_state(params[:current_move].to_i, session[:game].current_player.piece)
-			redirect "/game_over" if session[:game].game_over
+			session[:current_move] = session[:game].current_player.choose_move(session[:game], session[:board])
+			if session[:current_move] == "human_move"
+				session[:game].change_turn
+				erb :board
+			else
+			session[:board].change_state(session[:current_move].to_i, session[:game].current_player.piece)
+			redirect "/game_over" if session[:board].game_over
 			session[:game].change_turn
-		end 
-
-
-		if session[:game].current_player.type.class == Human 
-			erb :board 
-		else
-			session[:current_move] = session[:game].current_player.choose_move
-			session[:game].board.change_state(session[:current_move].to_i, session[:game].current_player.piece)
-			redirect "/game_over" if session[:game].game_over
-			session[:game].change_turn
-			session[:just_played] = "computer"
+			# session[:just_played] = "computer"
 			# redirect "/play_game"
 			erb :board
-		end
-	end
+			end
 end
+
+
+
+
+
+# get "/play_game" do
+# 	session[:just_played] = params.dig(:just_played)
+
+# 	if session[:compVScomp] == true && session[:just_played] == "human"
+# 		erb :board
+# 	else
+
+# 		if session[:game].board.check_position(params[:current_move].to_i) == false
+# 			erb :board
+
+# 		elsif session[:just_played] == "human"
+# 			session[:game].board.change_state(params[:current_move].to_i, session[:game].current_player.piece)
+# 			redirect "/game_over" if session[:game].game_over
+# 			session[:game].change_turn
+# 		end 
+
+
+# 		if session[:game].current_player.type.class == Human 
+# 			erb :board 
+# 		else
+# 			session[:current_move] = session[:game].current_player.choose_move(session[:game], session[:board])
+# 			session[:board].change_state(session[:current_move].to_i, session[:game].current_player.piece)
+# 			redirect "/game_over" if session[:game].game_over
+# 			session[:game].change_turn
+# 			session[:just_played] = "computer"
+# 			# redirect "/play_game"
+# 			erb :board
+# 		end
+# 	end
+# end
 
 
 get "/game_over" do
