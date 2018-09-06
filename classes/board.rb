@@ -90,7 +90,7 @@ class Board
   end
 
   def game_won_by(piece)
-    @board.overall_status().each do |group|
+    self.overall_status().each do |group|
       return true if group.count(piece) == self.size
     end
     false

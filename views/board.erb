@@ -1,3 +1,11 @@
+ <script>
+  function unclickSpaces() {
+    document.querySelectorAll('.grids').forEach(function(space){
+      space.onclick = null;
+    });
+  }
+  </script>
+
 <%images = []%>
 <%session[:board].state.each do |position|%>
   <%if position.is_a?Integer%>
@@ -9,11 +17,13 @@
   <%end%>
 <%end%>
 <div class="page">
-<div style="display: none;" id="submitBtn" data="<%= session[:compVScomp] %>">
-  <form action="play_game" method="get">
-   <input type="submit" value="Next Move">
-  </form>
-</div>
+  <% if session[:compVScomp] == true %>
+    <div style="display: block;" id="submitBtn" data="<%= session[:compVScomp] %>">
+      <form action="play_game" method="get">
+       <input type="submit" value="Next Move">
+      </form>
+    </div>
+  <% end %>
 <div class="flex-container">
   <div class="grid-container" style="display: grid;grid-gap: .5vw;grid-template-columns: repeat(<%=session[:board].size%>, 1fr);grid-template-rows: repeat(<%=session[:board].size%>,1fr);">
     <% for space_count in (0...images.length) %>
@@ -29,19 +39,16 @@
 </div>
 
 
-<script type="text/javascript">
-  if(submitBtn.getAttribute('data') == "true") {
-    console.log("jdfasdfadfoiafioaf");
-    submitBtn.style.display = "block"; 
-    console.log(submitBtn.style.display);
-  };
-</script>
+<% if session[:compVScomp] == true %>
+  <script> unclickSpaces() </script>
+<% end %>
 
 
 <script>
+
   function playerMove(current_move) {
     var just_played = "human"
-    window.location = "/play_game?current_move=" + current_move + "&just_played=" + just_played;
+    window.location = "/human_move?current_move=" + current_move + "&just_played=" + just_played;
   }
 </script>
 

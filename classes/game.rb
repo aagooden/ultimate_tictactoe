@@ -17,11 +17,5 @@ class Game
     @current_player == @player1 ? @current_player = @player2 : @current_player = @player1
   end
 
-  def play_again(turn)
-    @board = Board.new(@size)
-    @current_player = turn == "player1" ? @player1 : @player2
-  end
-
-
 
 end
